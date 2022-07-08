@@ -7,16 +7,7 @@ const whitelistRoute = express.Router();
 
 let whitelistModel = require("../models/whitelist.model");
 
-// To Get List
-whitelistRoute.route("/").get(function (req, res) {
-  whitelistModel.find(function (err, whitelist) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(whitelist);
-    }
-  });
-});
+
 
 // To Add New
 whitelistRoute.route("/update").post(async function (req, res) {
@@ -32,6 +23,17 @@ whitelistRoute.route("/update").post(async function (req, res) {
     res.status(400).send("Something Went Wrong");
   }
   res.status(200).json({ message: "Address Added Successfully" });
+});
+
+// To Get List
+whitelistRoute.route("/").get(function (req, res) {
+  whitelistModel.find(function (err, whitelist) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(whitelist);
+    }
+  });
 });
 
 module.exports = whitelistRoute;
